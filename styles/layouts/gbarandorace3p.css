@@ -1,0 +1,127 @@
+/* OVERLAY CONFIG */
+/* WARNING: Do not change this unless you know what you're doing */
+
+/* Variables */
+:root {
+  --game-one-x: 0px;
+  --game-one-y: 0px;
+  --game-one-width: 720px;
+  --game-one-height: 480px;
+
+  --game-two-x: 0px;
+  --game-two-y: 504px;
+  --game-two-width: 720px;
+  --game-two-height: 480px;
+
+  --game-three-x: 1200px;
+  --game-three-y: 0px;
+  --game-three-width: 720px;
+  --game-three-height: 480px;
+
+  --host-one-x: 1280px;
+  --host-one-y: 504px;
+  --host-one-width: 640px;
+  --host-one-height: 480px;
+
+  --social-width: 204px;
+  --social-height: 480px;
+}
+
+/* Layout Path */
+#container #background {
+  clip-path: polygon(
+    var(--game-one-width) var(--game-one-y),
+    var(--game-one-width) var(--game-one-height),
+    var(--game-one-x) var(--game-one-height),
+    var(--game-one-x) var(--game-two-y),
+    var(--game-two-width) var(--game-two-y),
+    var(--game-two-width) calc(var(--game-two-y) + var(--game-two-height)),
+    var(--game-two-x) calc(var(--game-two-y) + var(--game-two-height)),
+    var(--game-two-x) var(--overlay-height),
+    var(--overlay-width) var(--overlay-height),
+    var(--overlay-width) calc(var(--host-one-y) + var(--host-one-height)),
+    var(--host-one-x) calc(var(--host-one-y) + var(--host-one-height)),
+    var(--host-one-x) var(--host-one-y),
+    var(--overlay-width) var(--host-one-y),
+    var(--overlay-width) var(--game-three-height),
+    var(--game-three-x) var(--game-three-height),
+    var(--game-three-x) var(--game-three-y)
+  );
+}
+
+/* Info Boxes Position & Dimensions */
+#container #info-boxes {
+  left: calc(var(--host-one-x) - calc(var(--social-width) + 80px) - var(--element-margin));
+  bottom: var(--bottom-bar-height);
+  width: calc(var(--social-width) + 80px);
+  height: var(--info-box-height);
+  overflow-y: visible;
+}
+
+/* Alerts & Chat Position & Dimensions */
+#container #chat,
+#container #alerts {
+  top: var(--host-one-y);
+  left: calc(var(--host-one-x) - calc(var(--social-width) + 80px) - var(--element-margin));
+  width: calc(var(--social-width) + 80px);
+}
+
+#container #chat {
+  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+}
+
+#container #alerts {
+  height: var(--social-height);
+}
+
+#container #social-background {
+  display: flex;
+  top: calc(var(--game-one-y) + calc(var(--social-height) / 2));
+  left: calc(calc(var(--game-one-width) + var(--element-margin)) + calc(var(--social-width) / 2));
+}
+
+/* Tracker Position & Dimensions */
+#container #tracker-one {
+  top: var(--game-one-y);
+  left: calc(var(--game-one-x) + var(--game-one-width) + var(--element-margin));
+  width: var(--social-width);
+  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+}
+
+#container #tracker-info-one {
+  top: calc(var(--game-one-y) + calc(var(--social-height) - var(--info-box-height)));
+  left: calc(var(--game-one-x) + var(--game-one-width) + var(--element-margin));
+  width: var(--social-width);
+  height: var(--info-box-height);
+  overflow-y: visible;
+}
+
+#container #tracker-two {
+  top: var(--game-two-y);
+  left: calc(var(--game-two-x) + var(--game-two-width) + var(--element-margin));
+  width: var(--social-width);
+  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+}
+
+#container #tracker-info-two {
+  top: calc(var(--game-two-y) + calc(var(--social-height) - var(--info-box-height)));
+  left: calc(var(--game-two-x) + var(--game-two-width) + var(--element-margin));
+  width: var(--social-width);
+  height: var(--info-box-height);
+  overflow-y: visible;
+}
+
+#container #tracker-three {
+  top: var(--game-three-y);
+  left: calc(var(--game-three-x) - var(--social-width) - var(--element-margin));
+  width: var(--social-width);
+  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+}
+
+#container #tracker-info-three {
+  top: calc(var(--game-three-y) + calc(var(--social-height) - var(--info-box-height)));
+  left: calc(var(--game-three-x) - var(--social-width) - var(--element-margin));
+  width: var(--social-width);
+  height: var(--info-box-height);
+  overflow-y: visible;
+}
