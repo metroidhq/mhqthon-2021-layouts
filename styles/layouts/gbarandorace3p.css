@@ -18,12 +18,37 @@
   --game-three-width: 720px;
   --game-three-height: 480px;
 
-  --host-one-x: 1280px;
-  --host-one-y: 504px;
-  --host-one-width: 640px;
-  --host-one-height: 480px;
+  --host-one-x: 744px;
+  --host-one-y: 327px;
+  --host-one-width: 204px;
+  --host-one-height: 153px;
 
-  --social-width: 204px;
+  --host-two-x: 744px;
+  --host-two-y: 504px;
+  --host-two-width: 204px;
+  --host-two-height: 153px;
+
+  --host-three-x: 972px;
+  --host-three-y: 327px;
+  --host-three-width: 204px;
+  --host-three-height: 153px;
+
+  --aux-one-x: 720px;
+  --aux-one-y: 0px;
+  --aux-one-width: 228px;
+  --aux-one-height: 303px;
+
+  --aux-two-x: 720px;
+  --aux-two-y: 681px;
+  --aux-two-width: 228px;
+  --aux-two-height: 303px;
+
+  --aux-three-x: 972px;
+  --aux-three-y: 0px;
+  --aux-three-width: 228px;
+  --aux-three-height: 303px;
+
+  --social-width: 948px;
   --social-height: 480px;
 }
 
@@ -32,18 +57,27 @@
   clip-path: polygon(
     var(--game-one-width) var(--game-one-y),
     var(--game-one-width) var(--game-one-height),
+    var(--host-one-x) var(--game-one-height),
+    var(--host-one-x) var(--host-one-y),
+    calc(var(--host-one-x) + var(--host-one-width)) var(--host-one-y),
+    calc(var(--host-one-x) + var(--host-one-width)) var(--game-one-height),
     var(--game-one-x) var(--game-one-height),
     var(--game-one-x) var(--game-two-y),
+    var(--game-two-width) var(--game-two-y),
+    calc(var(--host-two-x) + var(--host-two-width)) var(--game-two-y),
+    calc(var(--host-two-x) + var(--host-two-width)) calc(var(--game-two-y) + var(--host-two-height)),
+    var(--host-two-x) calc(var(--game-two-y) + var(--host-two-height)),
+    var(--host-two-x) var(--game-two-y),
     var(--game-two-width) var(--game-two-y),
     var(--game-two-width) calc(var(--game-two-y) + var(--game-two-height)),
     var(--game-two-x) calc(var(--game-two-y) + var(--game-two-height)),
     var(--game-two-x) var(--overlay-height),
     var(--overlay-width) var(--overlay-height),
-    var(--overlay-width) calc(var(--host-one-y) + var(--host-one-height)),
-    var(--host-one-x) calc(var(--host-one-y) + var(--host-one-height)),
-    var(--host-one-x) var(--host-one-y),
-    var(--overlay-width) var(--host-one-y),
     var(--overlay-width) var(--game-three-height),
+    var(--host-three-x) var(--game-three-height),
+    var(--host-three-x) var(--host-three-y),
+    calc(var(--host-three-x) + var(--host-three-width)) var(--host-three-y),
+    calc(var(--host-three-x) + var(--host-three-width)) var(--game-three-height),
     var(--game-three-x) var(--game-three-height),
     var(--game-three-x) var(--game-three-y)
   );
@@ -51,9 +85,9 @@
 
 /* Info Boxes Position & Dimensions */
 #container #info-boxes {
-  left: calc(var(--host-one-x) - calc(var(--social-width) + 80px) - var(--element-margin));
+  left: var(--host-three-x);
   bottom: var(--bottom-bar-height);
-  width: calc(var(--social-width) + 80px);
+  width: var(--social-width);
   height: var(--info-box-height);
   overflow-y: visible;
 }
@@ -61,9 +95,9 @@
 /* Alerts & Chat Position & Dimensions */
 #container #chat,
 #container #alerts {
-  top: var(--host-one-y);
-  left: calc(var(--host-one-x) - calc(var(--social-width) + 80px) - var(--element-margin));
-  width: calc(var(--social-width) + 80px);
+  top: var(--host-two-y);
+  left: var(--host-three-x);
+  width: var(--social-width);
 }
 
 #container #chat {
@@ -76,52 +110,53 @@
 
 #container #social-background {
   display: flex;
-  top: calc(var(--game-one-y) + calc(var(--social-height) / 2));
-  left: calc(calc(var(--game-one-width) + var(--element-margin)) + calc(var(--social-width) / 2));
+  top: calc(var(--game-one-height) + var(--element-margin) + calc(var(--social-height) / 2));
+  left: calc(calc(var(--game-one-width) + calc(var(--element-margin) * 2) + var(--host-one-width)) + calc(var(--social-width) / 2));
 }
 
-/* Tracker Position & Dimensions */
-#container #tracker-one {
-  top: var(--game-one-y);
-  left: calc(var(--game-one-x) + var(--game-one-width) + var(--element-margin));
-  width: var(--social-width);
-  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+/* Host Name Positions & Dimensions */
+#container #host-one {
+  top: calc(calc(var(--host-one-y) + var(--host-one-height)) - calc(var(--host-one-height) / 5));
+  left: var(--host-one-x);
+  width: var(--host-one-width);
+  height: calc(var(--host-one-height) / 5);
+  font-size: calc(var(--host-one-height) / 10);
 }
 
-#container #tracker-info-one {
-  top: calc(var(--game-one-y) + calc(var(--social-height) - var(--info-box-height)));
-  left: calc(var(--game-one-x) + var(--game-one-width) + var(--element-margin));
-  width: var(--social-width);
-  height: var(--info-box-height);
-  overflow-y: visible;
+#container #host-two {
+  top: calc(calc(var(--host-two-y) + var(--host-two-height)) - calc(var(--host-two-height) / 5));
+  left: var(--host-two-x);
+  width: var(--host-two-width);
+  height: calc(var(--host-two-height) / 5);
+  font-size: calc(var(--host-two-height) / 10);
 }
 
-#container #tracker-two {
-  top: var(--game-two-y);
-  left: calc(var(--game-two-x) + var(--game-two-width) + var(--element-margin));
-  width: var(--social-width);
-  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+#container #host-three {
+  top: calc(calc(var(--host-three-y) + var(--host-three-height)) - calc(var(--host-three-height) / 5));
+  left: var(--host-three-x);
+  width: var(--host-three-width);
+  height: calc(var(--host-three-height) / 5);
+  font-size: calc(var(--host-three-height) / 10);
 }
 
-#container #tracker-info-two {
-  top: calc(var(--game-two-y) + calc(var(--social-height) - var(--info-box-height)));
-  left: calc(var(--game-two-x) + var(--game-two-width) + var(--element-margin));
-  width: var(--social-width);
-  height: var(--info-box-height);
-  overflow-y: visible;
+/* Aux Positions & Dimensions */
+#container #aux-one {
+  top: var(--aux-one-y);
+  left: var(--aux-one-x);
+  width: var(--aux-one-width);
+  height: var(--aux-one-height);
 }
 
-#container #tracker-three {
-  top: var(--game-three-y);
-  left: calc(var(--game-three-x) - var(--social-width) - var(--element-margin));
-  width: var(--social-width);
-  height: calc(var(--social-height) - calc(var(--info-box-height) + var(--divider-height)));
+#container #aux-two {
+  top: var(--aux-two-y);
+  left: var(--aux-two-x);
+  width: var(--aux-two-width);
+  height: var(--aux-two-height);
 }
 
-#container #tracker-info-three {
-  top: calc(var(--game-three-y) + calc(var(--social-height) - var(--info-box-height)));
-  left: calc(var(--game-three-x) - var(--social-width) - var(--element-margin));
-  width: var(--social-width);
-  height: var(--info-box-height);
-  overflow-y: visible;
+#container #aux-three {
+  top: var(--aux-three-y);
+  left: var(--aux-three-x);
+  width: var(--aux-three-width);
+  height: var(--aux-three-height);
 }
