@@ -10,7 +10,7 @@ function startDataSlideshow() {
 };
 
 function insertCountdown() {
-  var timespan = countdown(null, new Date('Mon Aug 17 2020 16:00:00 GMT-0700 (PDT)'));
+  var timespan = countdown(null, new Date('Thu Aug 5 2021 06:00:00 GMT-0700 (PDT)'));
 
   document.getElementById('stand-by-title').innerText =
       ('0' + timespan.hours).slice(-2) + ':' +
@@ -23,7 +23,7 @@ function insertCountdown() {
 function getDonationAmount() {
   var request = new XMLHttpRequest();
 
-  request.open('GET', 'https://tiltify.com/api/v3/campaigns/72913');
+  request.open('GET', 'https://tiltify.com/api/v3/campaigns/126123');
   request.setRequestHeader('Authorization', 'Bearer 31c598ad64adc91b52950ca8cbdb5354f623d99fd1c54f7440f668ce1f6bccc9')
 
   request.onreadystatechange = function () {
@@ -34,8 +34,8 @@ function getDonationAmount() {
         try {
           data = JSON.parse(request.responseText).data || {};
           document.getElementById('donation-amount').innerText = '$' + numeral(data.amountRaised || 0).format('0,0.00');
-        } catch (e) {
-          console.error(new Error(e));
+        } catch (error) {
+          console.error(error);
         }
       }
 
@@ -49,7 +49,7 @@ function getDonationAmount() {
 function getLatestDonation() {
   var request = new XMLHttpRequest();
 
-  request.open('GET', 'https://tiltify.com/api/v3/campaigns/72913/donations');
+  request.open('GET', 'https://tiltify.com/api/v3/campaigns/126123/donations');
   request.setRequestHeader('Authorization', 'Bearer 31c598ad64adc91b52950ca8cbdb5354f623d99fd1c54f7440f668ce1f6bccc9')
 
   request.onreadystatechange = function () {
@@ -60,8 +60,8 @@ function getLatestDonation() {
         try {
           data = JSON.parse(request.responseText).data[0] || {};
           if (data.name) document.getElementById('latest-donation').innerText = data.name + ': $' + numeral(data.amount || 0).format('0.00');
-        } catch (e) {
-          console.error(new Error(e));
+        } catch (error) {
+          console.error(error);
         }
       }
 
